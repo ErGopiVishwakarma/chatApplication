@@ -2,6 +2,7 @@ const express = require('express')
 const { connection } = require('./config/db')
 const {userRouter} = require('./route/userRoute')
 const chatRouter = require('./route/chatRoute')
+const messageRouter = require('./route/messageRoute')
 const cors = require('cors')
 
 
@@ -15,6 +16,7 @@ app.get('/',(req,res)=>{
 
 app.use('/user',userRouter)
 app.use('/chat',chatRouter)
+app.use('/message',messageRouter)
 
 
 

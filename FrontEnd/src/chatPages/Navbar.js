@@ -100,12 +100,12 @@ const Navbar = () => {
     
 
     return (
-        <Flex h='60px' justifyContent={'space-between'} px="30px" py="10px" bg="blackAlpha.700" alignItems={'center'} position='fixed' w='100%' zIndex='99'>
+        <Flex h='60px' justifyContent={'space-between'} px={{base:'5px',md:'30px'}} py="10px" bg="blackAlpha.900" alignItems={'center'}>
             <Tooltip hasArrow label='Search User' bg='blackAlpha.800' color='white' w="120px" textAlign={'center'}>
                 <Button ref={btnRef} onClick={onOpen}>
                     <Flex gap="10px" alignItems={'center'}>
                         <SearchIcon />
-                        <Text>search user</Text>
+                        <Text display={{base:'none',md:'block'}}>search user</Text>
                     </Flex>
                 </Button>
             </Tooltip>
@@ -156,13 +156,13 @@ const Navbar = () => {
 
 
             {/* profile part  */}
-            <Flex gap="40px" alignItems={'center'}>
+            <Flex gap={{base:'20px', md:'40px'}} alignItems={'center'}>
                 <Box>
                     <BellIcon fontSize="20px" color={'white'} />
                 </Box>
                 <Menu>
                     <MenuButton as={Button} variant={'unstyled'} >
-                        <Flex alignItems={'center'} gap='10px' cursor={'pointer'}>
+                        <Flex alignItems={'center'} gap='5px' cursor={'pointer'}>
                             <Image h="40px" w="40px" src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" borderRadius={'50%'} />
                             <ChevronDownIcon color='white' fontSize={'25px'} />
                         </Flex>

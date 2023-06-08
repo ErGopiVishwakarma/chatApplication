@@ -80,8 +80,6 @@ chatRouter.post('/creategroup',authenticate,async(req,res)=>{
     return res.send({msg:"group must have more than two users"});
   }
 // here i am including current user
-console.log(users)
-console.log(req.user)
   users.push(req.user);
   console.log(users)
 

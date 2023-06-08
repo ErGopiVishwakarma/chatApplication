@@ -17,13 +17,13 @@ import {
 import { ViewIcon } from '@chakra-ui/icons'
 
 
-const ProfileModal = ({children}) => {
+const ProfileModal = ({user,children}) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
         <Box>
         {
-            children?<span style={{width:"100%"}} onClick={onOpen}>{children}</span>:<IconButton icon={<ViewIcon />} onClick={{onOpen}} display='flex' />
+            children?<span style={{width:"100%"}} onClick={onOpen}>{children}</span>:<IconButton icon={<ViewIcon />} onClick={onOpen} display='flex' />
         }
 
             <Modal isOpen={isOpen} onClose={onClose} m="auto">
@@ -32,9 +32,9 @@ const ProfileModal = ({children}) => {
                     <ModalHeader></ModalHeader>
                     <ModalCloseButton />
                     <ModalBody display={'flex'} flexDirection="column" justifyContent={'center'} alignItems={'center'}>
-                    <Text>gopi vishwakarma</Text>
-                      <Avatar src="" name="gopi pagal" h="120px" w='120px' m="auto" />
-                      <Text>gopi@gmail.com</Text>
+                    <Text>{user?.name}</Text>
+                      <Avatar src={user?.pic}  h="120px" w='120px' m="auto" />
+                      <Text>{user?.email}</Text>
                     </ModalBody>
 
                     <ModalFooter>

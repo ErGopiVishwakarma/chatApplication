@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ChatProvider } from './ContextProvider'
 import GroupChatModal from './GroupChatModal'
 
-const Sidebar = () => {
+const Sidebar = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState()
   const { user, setUser, selectChat, setSelectChat, chats, setChats } = useContext(ChatProvider)
   const toast = useToast()
@@ -37,26 +37,26 @@ const Sidebar = () => {
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem('userInfo')))
     getChats()
-  }, [])
-  console.log(chats)
+  }, [fetchAgain])
   return (
-    <Box h="540px" w='100%' boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'} bg='blackAlpha.500' borderRadius={'10px'} >
+    <Box h="100vh" w='100%' boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'} bg='blackAlpha.500' borderRadius={'10px'} >
       <Flex direction={'column'}>
         <Flex justifyContent={'space-between'} alignItems={'center'} pb='10px'>
           <Text fontSize={'20px'} fontWeight={'bolder'} >
             chats
           </Text>
           <GroupChatModal>
-            <Button>Group Chat +</Button>
+            <Button variant={'outline'}>create group +</Button>
           </GroupChatModal>
         </Flex>
-        <VStack spacing={'2px'}>
+        <VStack spacing={'6px'}>
           {
             chats ? (
               chats?.map(el => (
                 <Flex
+                  key={el._id}
                   w="100%"
-                  gap="15px"
+                  justifyContent={'space-between'}
                   p="10px"
                   borderRadius={'8px'} cursor='pointer'
 
@@ -64,12 +64,21 @@ const Sidebar = () => {
                   bg={selectChat === el ? "#90EE90" : '#FFEFD5'}
                   color={selectChat === el ? 'black' : 'black'}
                 >
-
-                  <Text fontWeight={'bold'}>
-
-                    {el.isGroupChat ? el.chatName : loggedUser._id === el.users[0]._id ? el.users[0].name : el.users[1].name}
-
-
+                  <Flex gap="15px">
+                    <Box>
+                      {el.isGroupChat ? <Avatar src="" name={`${el.chatName}`} /> : loggedUser._id === el.users[0]._id ? <Avatar src={el.users[1].pic} /> : <Avatar src={el.users[0].pic} />}
+                    </Box>
+                    <Box>
+                      <Text fontWeight={'bold'}>
+                        {el.isGroupChat ? el.chatName : loggedUser._id === el.users[0]._id ? el.users[1].name : el.users[0].name}
+                      </Text>
+                      <Text>
+                        hii gopi
+                      </Text>
+                    </Box>
+                  </Flex>
+                  <Text>
+                    yesterday
                   </Text>
 
                 </Flex>
